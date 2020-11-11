@@ -14,6 +14,9 @@ data:
 {{- if eq $key "prometheus.yml" }}
     global:
 {{ $root.Values.server.global | toYaml | trimSuffix "\n" | indent 6 }}
+{{- if $root.Values.server.externalLabels }}
+    external_labels:
+{{ $root.Values.server.externalLabels | toYaml | indent 4 }}
 {{- if $root.Values.server.remoteWrite }}
     remote_write:
 {{ $root.Values.server.remoteWrite | toYaml | indent 4 }}
